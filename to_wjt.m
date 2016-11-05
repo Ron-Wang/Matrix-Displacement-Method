@@ -1,4 +1,4 @@
-%»­³öÍä¾ØÍ¼
+%ç”»å¼¯çŸ©å›¾
 function to_wjt(dyhz,hzlx,hzdx,hzcd,l,f,f1,f2,x0,y0,cos,sin,r_wj)
 if dyhz == 0 || hzlx == 5 || hzlx ==6
     X = [0,0,l,l];
