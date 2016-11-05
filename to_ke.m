@@ -1,4 +1,4 @@
-%���ݵ�Ԫ���ȡ�EA��EI����ֲ�����ϵ�ĵ�Ԫ�նȾ���
+%根据单元长度、EA、EI计算局部坐标系的单元刚度矩阵
 function ke = to_ke(EA,EI,l)
 gd1 = EA / l;
 gd2 = 12 * EI / (l ^ 3);
