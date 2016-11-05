@@ -1,4 +1,4 @@
-%»­³ö¼ôÁ¦Í¼
+%ç”»å‰ªåŠ›å›¾
 function to_jlt(dyhz,hzlx,hzdx,hzcd,l,f1,f2,x0,y0,cos,sin,r_jl)
 if dyhz == 0 || hzlx == 3 || hzlx ==5 || hzlx == 6 || hzlx == 7
     X = [0,0,l,l];
