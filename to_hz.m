@@ -1,4 +1,4 @@
-%计算单元荷载的单元固端力
+%璁＄畻鍗曞厓鑽疯浇鐨勫崟鍏冨浐绔姏
 function Fe = to_hz(type,value,a,l)
 if type == 1
     Fe = [0;-value*a*(1-a^2/l^2+a^3/(2*l^3));-value*a^2/12*(6-8*a/l+3*a^2/l^2);0;-value*a^3/l^2*(1-a/(2*l));value*a^3/(12*l)*(4-3*a/l)];
