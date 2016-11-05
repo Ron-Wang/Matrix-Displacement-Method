@@ -1,4 +1,4 @@
-%»­³öÖáÁ¦Í¼
+%ç”»è½´åŠ›å›¾
 function to_zlt(dyhz,hzlx,hzcd,l,f1,f2,x0,y0,cos,sin,r_zl)
 if dyhz == 0 || hzlx == 1 || hzlx ==2 || hzlx == 3 || hzlx == 4 || hzlx == 7
     X = [0,0,l,l];
