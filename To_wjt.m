@@ -1,5 +1,5 @@
-%画弯矩图
-function to_wjt(dyhz,hzlx,hzdx,hzcd,l,f,f1,f2,x0,y0,cos,sin,r_wj)
+%画出弯矩图
+function To_wjt(dyhz,hzlx,hzdx,hzcd,l,f,f1,f2,x0,y0,cos,sin,r_wj)
 if dyhz == 0 || hzlx == 5 || hzlx ==6
     X = [0,0,l,l];
     Y = [0,f1/r_wj,f2/r_wj,0];
@@ -19,6 +19,7 @@ else
         x = x0 + X * cos - Y * sin;
         y = y0 + X * sin + Y * cos;
         text(x(2),y(2),num2str(round(f1*1000)/1000),'fontsize',8,'color','red');
+        text(x(101),y(101),num2str(round(Y1(100)*1000)/1000),'fontsize',8,'color','red');
         text(x(201),y(201),num2str(round(f2*1000)/1000),'fontsize',8,'color','red');
         plot(x,y,'red');
     elseif hzlx == 2
@@ -31,6 +32,7 @@ else
         x = x0 + X * cos - Y * sin;
         y = y0 + X * sin + Y * cos;
         text(x(2),y(2),num2str(round(f1*1000)/1000),'fontsize',8,'color','red');
+        text(x(101),y(101),num2str(round(Y1(100)*1000)/1000),'fontsize',8,'color','red');
         text(x(201),y(201),num2str(round(f2*1000)/1000),'fontsize',8,'color','red');
         plot(x,y,'red');
     elseif hzlx == 3
@@ -43,6 +45,8 @@ else
         x = x0 + X * cos - Y * sin;
         y = y0 + X * sin + Y * cos;
         text(x(2),y(2),num2str(round(f1*1000)/1000),'fontsize',8,'color','red');
+        text(x(101),y(101),num2str(round(Y1(100)*1000)/1000),'fontsize',8,'color','red');
+        text(x(102),y(102),num2str(round(Y2(1)*1000)/1000),'fontsize',8,'color','red');
         text(x(201),y(201),num2str(round(f2*1000)/1000),'fontsize',8,'color','red');
         plot(x,y,'red');
     elseif hzlx == 4
@@ -55,6 +59,7 @@ else
         x = x0 + X * cos - Y * sin;
         y = y0 + X * sin + Y * cos;
         text(x(2),y(2),num2str(round(f1*1000)/1000),'fontsize',8,'color','red');
+        text(x(101),y(101),num2str(round(Y1(100)*1000)/1000),'fontsize',8,'color','red');
         text(x(201),y(201),num2str(round(f2*1000)/1000),'fontsize',8,'color','red');
         plot(x,y,'red');
     elseif hzlx == 7
@@ -67,6 +72,7 @@ else
         x = x0 + X * cos - Y * sin;
         y = y0 + X * sin + Y * cos;
         text(x(2),y(2),num2str(round(f1*1000)/1000),'fontsize',8,'color','red');
+        text(x(101),y(101),num2str(round(Y1(100)*1000)/1000),'fontsize',8,'color','red');
         text(x(201),y(201),num2str(round(f2*1000)/1000),'fontsize',8,'color','red');
         plot(x,y,'red');
     end  
