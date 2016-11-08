@@ -1,5 +1,5 @@
-str1=input('ÇëÊäÈë¶ÁÈ¡µÄÎÄ¼şÃû:\n','s');
-str2=input('ÇëÊäÈëÊä³öµÄÎÄ¼şÃû:\n','s');
+str1=input('è¯·è¾“å…¥è¯»å–çš„æ–‡ä»¶å:\n','s');
+str2=input('è¯·è¾“å…¥è¾“å‡ºçš„æ–‡ä»¶å:\n','s');
 fidin = fopen(['.\data\',str1,'.txt'],'r');              
 fidout_jd = fopen('jd.txt','w'); 
 fidout_dy = fopen('dy.txt','w'); 
@@ -7,24 +7,24 @@ fidout_hz = fopen('hz.txt','w');
 fidout = fopen(['.\outdata\',str2,'.txt'],'w');
 while ~feof(fidin)              
     tline=fgetl(fidin);
-    %ÅĞ¶Ï¿Õ¸ñ£¬ÔòÌø¹ı
+    %åˆ¤æ–­ç©ºæ ¼ï¼Œåˆ™è·³è¿‡
     if isempty(tline)
         continue 
     else
         [~,n] = size(tline);
-        %¡°jd:¡±ºóÃæµÄÊı×éĞ´Èëjd.txtÖĞ
+        %â€œjd:â€åé¢çš„æ•°ç»„å†™å…¥jd.txtä¸­
         if(tline(1) == 'j'&&tline(2) == 'd'&&tline(3) == ':')
             for i = 4:n
                 fprintf(fidout_jd,'%s',tline(i)); 
             end
             fprintf(fidout_jd,'\r\n');
-        %¡°dy:¡±ºóÃæµÄÊı×éĞ´Èëdy.txtÖĞ
+        %â€œdy:â€åé¢çš„æ•°ç»„å†™å…¥dy.txtä¸­
         elseif(tline(1) == 'd'&&tline(2) == 'y'&&tline(3) == ':')
             for i = 4:n
                 fprintf(fidout_dy,'%s',tline(i)); 
             end
             fprintf(fidout_dy,'\r\n');
-        %¡°hz:¡±ºóÃæµÄÊı×éĞ´Èëhz.txtÖĞ
+        %â€œhz:â€åé¢çš„æ•°ç»„å†™å…¥hz.txtä¸­
         elseif(tline(1) == 'h'&&tline(2) == 'z'&&tline(3) == ':')
             for i = 4:n
                 fprintf(fidout_hz,'%s',tline(i)); 
@@ -33,29 +33,29 @@ while ~feof(fidin)
         end
     end
 end
-%Çå¿Õtline,n,i
+%æ¸…ç©ºtline,n,i
 clear tline n i ;
-%¹Ø±ÕÏà¹ØÎÄ¼ş
+%å…³é—­ç›¸å…³æ–‡ä»¶
 fclose(fidin);
 fclose(fidout_jd);
 fclose(fidout_dy);
 fclose(fidout_hz);
 
-%½«½áµã¡¢µ¥Ôª¡¢ºÉÔØĞÅÏ¢¶ÁÈëÊı×é
+%å°†ç»“ç‚¹ã€å•å…ƒã€è·è½½ä¿¡æ¯è¯»å…¥æ•°ç»„
 jd = load('jd.txt');
 dy = load('dy.txt');
 hz = load('hz.txt');
-%É¾³ıjd.txt¡¢dy.txt¡¢hz.txt
+%åˆ é™¤jd.txtã€dy.txtã€hz.txt
 delete ('jd.txt');
 delete ('dy.txt');
 delete ('hz.txt');
-%ÓÉÊı×é´óĞ¡»ñµÃ½áµã¡¢µ¥Ôª¡¢ºÉÔØÊıÁ¿
+%ç”±æ•°ç»„å¤§å°è·å¾—ç»“ç‚¹ã€å•å…ƒã€è·è½½æ•°é‡
 [jd_num,~] = size(jd);
 [dy_num,~] = size(dy);
 [hz_num,~] = size(hz);
 
-wy_num = 0;%×ÜÌåÎ»ÒÆ¸öÊı
-%¼ÆËã×ÜÌåÎ»ÒÆ¸öÊı
+wy_num = 0;%æ€»ä½“ä½ç§»ä¸ªæ•°
+%è®¡ç®—æ€»ä½“ä½ç§»ä¸ªæ•°
 for i = 1:jd_num
     for j = 3:5
         if wy_num < jd(i,j)
@@ -64,27 +64,27 @@ for i = 1:jd_num
     end
 end
 
-K = zeros(wy_num,wy_num);%×ÜÌå¸Õ¶È¾ØÕó
-P = zeros(wy_num,1);%ÕûÌåµÈĞ§½ÚµãºÉÔØ
+K = zeros(wy_num,wy_num);%æ€»ä½“åˆšåº¦çŸ©é˜µ
+P = zeros(wy_num,1);%æ•´ä½“ç­‰æ•ˆèŠ‚ç‚¹è·è½½
 
-dydw = zeros(6,dy_num);%µ¥Ôª¶¨Î»ÏòÁ¿
-l = zeros(dy_num,1);%µ¥ÔªµÄ³¤¶È
-T = zeros(6,6,dy_num);%µ¥Ôª×ø±ê×ª»»¾ØÕó
-ke = zeros(6,6,dy_num);%¾Ö²¿×ø±êÏµµÄµ¥Ôª¸Õ¶È¾ØÕó
-k = zeros(6,6,dy_num);%ÕûÌå×ø±êÏµµÄµ¥Ôª¸Õ¶È¾ØÕó
-x = zeros(6,dy_num);%ÕûÌå×ø±êÏµµÄµ¥Ôª½ÚµãÎ»ÒÆ
-F = zeros(6,dy_num);%ÕûÌå×ø±êÏµµÄµ¥Ôª¸Ë¶ËÄÚÁ¦
-Fe = zeros(6,dy_num);%¾Ö²¿×ø±êÏµµÄµ¥Ôª¸Ë¶ËÄÚÁ¦
+dydw = zeros(6,dy_num);%å•å…ƒå®šä½å‘é‡
+l = zeros(dy_num,1);%å•å…ƒçš„é•¿åº¦
+T = zeros(6,6,dy_num);%å•å…ƒåæ ‡è½¬æ¢çŸ©é˜µ
+ke = zeros(6,6,dy_num);%å±€éƒ¨åæ ‡ç³»çš„å•å…ƒåˆšåº¦çŸ©é˜µ
+k = zeros(6,6,dy_num);%æ•´ä½“åæ ‡ç³»çš„å•å…ƒåˆšåº¦çŸ©é˜µ
+x = zeros(6,dy_num);%æ•´ä½“åæ ‡ç³»çš„å•å…ƒèŠ‚ç‚¹ä½ç§»
+F = zeros(6,dy_num);%æ•´ä½“åæ ‡ç³»çš„å•å…ƒæ†ç«¯å†…åŠ›
+Fe = zeros(6,dy_num);%å±€éƒ¨åæ ‡ç³»çš„å•å…ƒæ†ç«¯å†…åŠ›
 
-Fpe = zeros(6,hz_num);%¾Ö²¿×ø±êÏµµÄµ¥Ôª¹Ì¶ËÁ¦
-p = zeros(6,hz_num);%ÕûÌå×ø±êÏµµÄµÈĞ§½áµãºÉÔØ
+Fpe = zeros(6,hz_num);%å±€éƒ¨åæ ‡ç³»çš„å•å…ƒå›ºç«¯åŠ›
+p = zeros(6,hz_num);%æ•´ä½“åæ ‡ç³»çš„ç­‰æ•ˆç»“ç‚¹è·è½½
 
 for i = 1:dy_num
-    dydw(:,i) = [jd(dy(i,1),3),jd(dy(i,1),4),jd(dy(i,1),5),jd(dy(i,2),3),jd(dy(i,2),4),jd(dy(i,2),5)];%µ¥Ôª¶¨Î»ÏòÁ¿µÄÉú³É
-    [l(i),T(:,:,i)] = to_T(jd(dy(i,1),1),jd(dy(i,1),2),jd(dy(i,2),1),jd(dy(i,2),2));%¼ÆËãµ¥Ôª³¤¶ÈºÍµ¥Ôª×ø±ê×ª»»¾ØÕó
-    ke(:,:,i) = to_ke(dy(i,3),dy(i,4),l(i));%¼ÆËã¾Ö²¿×ø±êÏµµÄµ¥Ôª¸Õ¶È¾ØÕó
-    k(:,:,i) = T(:,:,i)'*ke(:,:,i)*T(:,:,i);%¼ÆËãÕûÌå×ø±êÏµµÄµ¥Ôª¸Õ¶È¾ØÕó
-    %µ¥Ôª¸Õ¶È¾ØÕóÏò×ÜÌå¸Õ¶È¾ØÕó¼¯³É
+    dydw(:,i) = [jd(dy(i,1),3),jd(dy(i,1),4),jd(dy(i,1),5),jd(dy(i,2),3),jd(dy(i,2),4),jd(dy(i,2),5)];%å•å…ƒå®šä½å‘é‡çš„ç”Ÿæˆ
+    [l(i),T(:,:,i)] = To_T(jd(dy(i,1),1),jd(dy(i,1),2),jd(dy(i,2),1),jd(dy(i,2),2));%è®¡ç®—å•å…ƒé•¿åº¦å’Œå•å…ƒåæ ‡è½¬æ¢çŸ©é˜µ
+    ke(:,:,i) = To_ke(dy(i,3),dy(i,4),l(i));%è®¡ç®—å±€éƒ¨åæ ‡ç³»çš„å•å…ƒåˆšåº¦çŸ©é˜µ
+    k(:,:,i) = T(:,:,i)'*ke(:,:,i)*T(:,:,i);%è®¡ç®—æ•´ä½“åæ ‡ç³»çš„å•å…ƒåˆšåº¦çŸ©é˜µ
+    %å•å…ƒåˆšåº¦çŸ©é˜µå‘æ€»ä½“åˆšåº¦çŸ©é˜µé›†æˆ
     for j = 1:6
         if dydw(j,i) ~= 0
             for n = 1:6
@@ -97,15 +97,15 @@ for i = 1:dy_num
 end
 
 for i = 1:hz_num
-    if hz(i,1) == 1%ÅĞ¶ÏºÉÔØ×÷ÓÃÔÚ½áµã
-        if jd(hz(i,2),hz(i,3)+2) ~= 0%ÅĞ¶Ï½áµãÔÚºÉÔØ×÷ÓÃ·½ÏòÉÏÓĞÎ»ÒÆ
+    if hz(i,1) == 1%åˆ¤æ–­è·è½½ä½œç”¨åœ¨ç»“ç‚¹
+        if jd(hz(i,2),hz(i,3)+2) ~= 0%åˆ¤æ–­ç»“ç‚¹åœ¨è·è½½ä½œç”¨æ–¹å‘ä¸Šæœ‰ä½ç§»
             P(jd(hz(i,2),hz(i,3)+2),1) = P(jd(hz(i,2),hz(i,3)+2),1) + hz(i,4);
         end
     else
-        Fpe(:,i) = to_hz(hz(i,3),hz(i,4),hz(i,5),l(hz(i,2)));%¼ÆËãµ¥Ôª¹Ì¶ËÁ¦
-        p(:,i) = - T(:,:,hz(i,2))'*Fpe(:,i);%¼ÆËãÕûÌå×ø±êÏµµÄµ¥ÔªµÈĞ§½áµãºÉÔØ
-        F(:,hz(i,2)) = F(:,hz(i,2)) + T(:,:,hz(i,2))' * Fpe(:,i);%ÏÈ½«ÕûÌå×ø±êÏµµÄµ¥Ôª¹Ì¶ËÁ¦¼Óµ½ÕûÌå×ø±êÏµµÄµ¥Ôª¸Ë¶ËÄÚÁ¦
-        %½«µ¥ÔªµÈĞ§½áµãºÉÔØÏò×ÜÌå¼¯³É
+        Fpe(:,i) = To_hz(hz(i,3),hz(i,4),hz(i,5),l(hz(i,2)));%è®¡ç®—å•å…ƒå›ºç«¯åŠ›
+        p(:,i) = - T(:,:,hz(i,2))'*Fpe(:,i);%è®¡ç®—æ•´ä½“åæ ‡ç³»çš„å•å…ƒç­‰æ•ˆç»“ç‚¹è·è½½
+        F(:,hz(i,2)) = F(:,hz(i,2)) + T(:,:,hz(i,2))' * Fpe(:,i);%å…ˆå°†æ•´ä½“åæ ‡ç³»çš„å•å…ƒå›ºç«¯åŠ›åŠ åˆ°æ•´ä½“åæ ‡ç³»çš„å•å…ƒæ†ç«¯å†…åŠ›
+        %å°†å•å…ƒç­‰æ•ˆç»“ç‚¹è·è½½å‘æ€»ä½“é›†æˆ
         for j = 1:6
             if dydw(j,hz(i,2)) ~= 0
                 P(dydw(j,hz(i,2)),1) = P(dydw(j,hz(i,2)),1) + p(j,i);
@@ -113,9 +113,9 @@ for i = 1:hz_num
         end
     end
 end
-X = K\P;%Çó³öÕûÌå×ø±êÏµÏÂµÄÎ»ÒÆ
+X = K\P;%æ±‚å‡ºæ•´ä½“åæ ‡ç³»ä¸‹çš„ä½ç§»
 
-%Çó³öÕûÌå×ø±êÏµÏÂµÄµ¥Ôª¸Ë¶ËÎ»ÒÆ
+%æ±‚å‡ºæ•´ä½“åæ ‡ç³»ä¸‹çš„å•å…ƒæ†ç«¯ä½ç§»
 for i = 1:dy_num
    for j = 1:6
        if dydw(j,i) ~= 0
@@ -125,10 +125,10 @@ for i = 1:dy_num
 end
 
 for i = 1:dy_num
-    F(:,i) = F(:,i) + k(:,:,i) * x(:,i);%Çó³öÕûÌå×ø±êÏµÏÂµÄµ¥Ôª¸Ë¶ËÄÚÁ¦
-    Fe(:,i) = T(:,:,i)*F(:,i);%Çó³ö¾Ö²¿×ø±êÏµÏÂµÄµ¥Ôª¸Ë¶ËÄÚÁ¦
+    F(:,i) = F(:,i) + k(:,:,i) * x(:,i);%æ±‚å‡ºæ•´ä½“åæ ‡ç³»ä¸‹çš„å•å…ƒæ†ç«¯å†…åŠ›
+    Fe(:,i) = T(:,:,i)*F(:,i);%æ±‚å‡ºå±€éƒ¨åæ ‡ç³»ä¸‹çš„å•å…ƒæ†ç«¯å†…åŠ›
 end
-%°Ñ½á¹ûĞ´ÈëÏàÓ¦µÄÎÄ¼şÖĞ
+%æŠŠç»“æœå†™å…¥ç›¸åº”çš„æ–‡ä»¶ä¸­
 fprintf(fidout,'%s','X:');
 fprintf(fidout,'\r\n');
 for i = 1:wy_num
@@ -145,7 +145,6 @@ for i = 1:6
     fprintf(fidout,'\r\n');
 end
 fclose(fidout);
-
 r_zl = max(max(abs(Fe(1,:))),max(abs(Fe(4,:))));
 r_jl = max(max(abs(Fe(2,:))),max(abs(Fe(5,:))));
 r_wj = max(max(abs(Fe(3,:))),max(abs(Fe(6,:))));
@@ -158,8 +157,8 @@ y_min = min(jd(:,2));
 x_max = max(jd(:,1));
 y_max = max(jd(:,2));
 
-set (gcf,'Position',[200,50,750,600], 'color','w');%ÉèÖÃ»æÍ¼¿Õ¼ä
-%»æÖáÁ¦Í¼
+set (gcf,'Position',[200,50,750,600], 'color','w');%è®¾ç½®ç»˜å›¾ç©ºé—´
+%ç»˜è½´åŠ›å›¾
 subplot(2,2,1)
 hold on;
 set(gca,'Xlim',[x_min - l_min/2,x_max + l_min/2]);
@@ -180,12 +179,12 @@ for i = 1:dy_num
             end
         end
     end
-    to_zlt(dyhz,hzlx,hzcd,l(i),-Fe(1,i),Fe(4,i),jd(dy(i,1),1),jd(dy(i,1),2),T(1,1,i),T(2,1,i),r_zl);
+    To_zlt(dyhz,hzlx,hzcd,l(i),-Fe(1,i),Fe(4,i),jd(dy(i,1),1),jd(dy(i,1),2),T(1,1,i),T(2,1,i),r_zl);
 end
-title('ÖáÁ¦Í¼');
+title('è½´åŠ›å›¾');
 axis off;
 
-%»æ¼ôÁ¦Í¼
+%ç»˜å‰ªåŠ›å›¾
 subplot(2,2,2)
 hold on;
 set(gca,'Xlim',[x_min - l_min/2,x_max + l_min/2]);
@@ -208,12 +207,12 @@ for i = 1:dy_num
             end
         end
     end
-    to_jlt(dyhz,hzlx,hzdx,hzcd,l(i),-Fe(2,i),Fe(5,i),jd(dy(i,1),1),jd(dy(i,1),2),T(1,1,i),T(2,1,i),r_jl);
+    To_jlt(dyhz,hzlx,hzdx,hzcd,l(i),-Fe(2,i),Fe(5,i),jd(dy(i,1),1),jd(dy(i,1),2),T(1,1,i),T(2,1,i),r_jl);
 end
-title('¼ôÁ¦Í¼');
+title('å‰ªåŠ›å›¾');
 axis off;
 
-%»æÍä¾ØÍ¼
+%ç»˜å¼¯çŸ©å›¾
 subplot(2,2,3)
 hold on;
 set(gca,'Xlim',[x_min - l_min/2,x_max + l_min/2]);
@@ -236,8 +235,8 @@ for i = 1:dy_num
             end
         end
     end
-   to_wjt(dyhz,hzlx,hzdx,hzcd,l(i),Fe(2,i),-Fe(3,i),Fe(6,i),jd(dy(i,1),1),jd(dy(i,1),2),T(1,1,i),T(2,1,i),r_wj); 
+   To_wjt(dyhz,hzlx,hzdx,hzcd,l(i),Fe(2,i),-Fe(3,i),Fe(6,i),jd(dy(i,1),1),jd(dy(i,1),2),T(1,1,i),T(2,1,i),r_wj); 
 end
-title('Íä¾ØÍ¼');
+title('å¼¯çŸ©å›¾');
 axis off;
  
