@@ -1,5 +1,5 @@
-%画剪力图
-function to_jlt(dyhz,hzlx,hzdx,hzcd,l,f1,f2,x0,y0,cos,sin,r_jl)
+%画出剪力图
+function To_jlt(dyhz,hzlx,hzdx,hzcd,l,f1,f2,x0,y0,cos,sin,r_jl)
 if dyhz == 0 || hzlx == 3 || hzlx ==5 || hzlx == 6 || hzlx == 7
     X = [0,0,l,l];
     Y = [0,f1/r_jl,f2/r_jl,0];
