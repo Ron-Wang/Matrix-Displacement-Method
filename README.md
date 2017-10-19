@@ -1,4 +1,4 @@
-# Matlab_yueyumo
+# Matrix-Displacement-Method
 结构力学-矩阵位移法</br>
 测试数据1（编程大作业第1题）：</br>
 ![image](https://github.com/Ron-Wang/Matlab_yueyumo/blob/master/image/1.jpg)</br>
